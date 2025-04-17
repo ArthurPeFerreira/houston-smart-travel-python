@@ -1,5 +1,6 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional, List
+from decimal import Decimal
 
 class SeatAvailability(BaseModel):
     origin_airport: str
@@ -7,7 +8,8 @@ class SeatAvailability(BaseModel):
     cabin: str
     start_date: str
     end_date: str 
-    only_direct_flights: bool  # Apenas voos diretos
+    only_direct_flights: bool 
+    carrier: str 
 
 class RouteModel(BaseModel):
     ID: str
@@ -137,5 +139,36 @@ class AvailabilityResponse(BaseModel):
     data: List[AvailabilityModel]
     count: int
     hasMore: bool
-    moreURL: str
+    moreURL: Optional[str] = None
     cursor: int
+
+
+class FlightsAvailability(BaseModel):
+    routeId: int
+    cabin: str
+    date: str
+    direct: bool
+
+class AirportType(BaseModel):
+    id: int
+    city: str
+    airport_code: str = Field(alias="airportCode")
+
+class CabinsType(BaseModel):
+    id: int
+    key: str
+    maximum_points: int = Field(alias="maximumPoints")
+    bags_amount: int = Field(alias="bagsAmount")
+    passage_price: Decimal = Field(alias="passagePrice")
+    cancellation_price: Decimal = Field(alias="cancellationPrice")
+
+class RouteType(BaseModel):
+    id: int
+    mileage_program: str = Field(alias="mileageProgram")
+    enable_layovers: bool = Field(alias="enableLayovers")
+    active: bool
+    airports: List[AirportType]
+    cabins: List[CabinsType]
+
+    class Config:
+        populate_by_name = True  # permite usar nomes snake_case no código
