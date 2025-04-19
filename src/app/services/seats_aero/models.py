@@ -2,15 +2,6 @@ from pydantic import BaseModel, Field
 from typing import Optional, List
 from decimal import Decimal
 
-class SeatAvailability(BaseModel):
-    origin_airport: str
-    destination_airport: str
-    cabin: str
-    start_date: str
-    end_date: str 
-    only_direct_flights: bool 
-    carrier: str 
-
 class RouteModel(BaseModel):
     ID: str
     OriginAirport: str
@@ -142,10 +133,9 @@ class AvailabilityResponse(BaseModel):
     moreURL: Optional[str] = None
     cursor: int
 
-
 class FlightsAvailability(BaseModel):
     routeId: int
-    cabin: str
+    cabin_key: str
     date: str
     direct: bool
 
