@@ -138,6 +138,10 @@ class FlightsAvailability(BaseModel):
     cabin_key: str
     date: str
     direct: bool
+    seats: int
+    origin_airport: str
+    destination_airport: str
+        
 
 class AirportType(BaseModel):
     id: int
