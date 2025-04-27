@@ -17,7 +17,7 @@ async def startup_function():
     if os.name == "nt":          # Windows → threads
         worker_cmd += ["-P", "threads", "-c", "8"]
     else:                        # Linux/macOS → pool default (prefork) c/ 4 proc
-        worker_cmd += ["-c", "4"]
+        worker_cmd += ["-c", "2"]
 
     app.state.worker = _spawn(worker_cmd)
 

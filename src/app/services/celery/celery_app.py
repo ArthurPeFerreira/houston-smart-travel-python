@@ -7,13 +7,13 @@ from src.app.services.seats_aero.seats_aero import fetch_seat_availability
 
 load_dotenv()
 
-redis_ip = os.getenv("REDIS_IP")
-redis_port = int(os.getenv("REDIS_PORT"))
+REDIS_IP = os.getenv("REDIS_IP")
+REDIS_PORT = int(os.getenv("REDIS_PORT"))
 
 celery_app = Celery(
     "celery_app",
-    broker=f"redis://{redis_ip}:{redis_port}/0",
-    backend=f"redis://{redis_ip}:{redis_port}/1"
+    broker=f"redis://{REDIS_IP}:{REDIS_PORT}/0",
+    backend=f"redis://{REDIS_IP}:{REDIS_PORT}/1"
 )
 
 # opções globais do worker / beat
