@@ -34,6 +34,7 @@ jobs:
           username: ${{secrets.PRODUCTION_REMOTE_USER}}
           key: ${{secrets.PRODUCTION_SSH_PRIVATE_KEY}}
           script: |
+            sudo systemctl stop HoustonSmarTravel
             sudo systemctl start redis-server
             sudo redis-cli flushall
             cd /projeto
@@ -41,3 +42,4 @@ jobs:
             source venv/bin/activate
             pip install --upgrade pip
             pip install -r requirements.txt
+            sudo systemctl start HoustonSmarTravel
