@@ -212,8 +212,6 @@ def fetch_seat_availability() -> None:
                                                             seats=seat_availability.WRemainingSeats,
                                                         )
                                                     )
-                            
-                            print(len(seat_availability_to_save))
 
                             insert_routes_data([(
                                 seat.routeId,
