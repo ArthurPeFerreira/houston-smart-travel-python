@@ -1,11 +1,20 @@
 import psycopg2
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DATABASE_URL =  os.getenv("DATABASE_URL")
+DATABASE_USER =  os.getenv("DATABASE_USER")
+DATABASE_PASSWORD =  os.getenv("DATABASE_PASSWORD")
+DATABASE_SCHEMA = os.getenv("DATABASE_SCHEMA")
 
 # Dados de conexão com o banco
 conn = psycopg2.connect(
-    host="hst-db.ctq0w4i4kk5c.us-east-1.rds.amazonaws.com",        # ou IP do servidor
-    database="hst_db",    # nome do banco
-    user="hst_db",      # nome do usuário
-    password="DGzeu1Ce7l43oWGGEeRx"   # senha do usuário
+    host=DATABASE_URL,        # ou IP do servidor
+    database=DATABASE_SCHEMA,    # nome do banco
+    user=DATABASE_USER,      # nome do usuário
+    password=DATABASE_PASSWORD  # senha do usuário
 )
 
 # Cria um cursor
