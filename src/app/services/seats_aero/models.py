@@ -153,8 +153,9 @@ class CabinsType(BaseModel):
     key: str
     maximum_points: int = Field(alias="maximumPoints")
     bags_amount: int = Field(alias="bagsAmount")
-    passage_price: Decimal = Field(alias="passagePrice")
-    cancellation_price: Decimal = Field(alias="cancellationPrice")
+    passage_price_from_airport_1_to_2: Decimal = Field(alias="passagePriceFromAirport1To2")
+    passage_price_from_airport_2_to_1: Decimal = Field(alias="passagePriceFromAirport2To1")
+    passage_price_round_trip: Decimal = Field(alias="passagePriceRoundTrip")
 
 class RouteType(BaseModel):
     id: int
